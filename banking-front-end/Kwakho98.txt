@@ -1,0 +1,7 @@
+Name: Kwakho
+Surname: Qasana
+Phone Number: 0749350792
+ID Number: 12345
+Account Number: 970899
+Password: 2003
+Balance: 3000.0

@@ -1,0 +1,7 @@
+Name: john
+Surname: doe
+Phone Number: 0611901234
+ID Number: 12345
+Account Number: 464374
+Password: test
+Balance: 0

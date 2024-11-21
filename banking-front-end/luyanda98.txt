@@ -1,0 +1,7 @@
+Name: john
+Surname: doe
+Phone Number: 0767112858
+ID Number: 12345
+Account Number: 310086
+Password: s7t11db
+Balance: 0

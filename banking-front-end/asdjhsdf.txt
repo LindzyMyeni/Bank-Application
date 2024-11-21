@@ -1,0 +1,7 @@
+Name: Ok
+Surname: Magidigidi
+Phone Number: 0767112858
+ID Number: 12345
+Account Number: 583864
+Password: pass
+Balance: 123.0

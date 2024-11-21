@@ -1,0 +1,113 @@
+/* General App Styling */
+.app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background-color: #d2d1d1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+.head{
+  color: #414a50            ;
+}
+
+/* Login and Register Form Styling */
+.login, .register {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 50px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.login input, .register input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}
+.login input:hover, .register input:hover{
+  background-color:#eef8f4 ;
+}
+
+.login button, .register button {
+  padding: 10px 20px;
+  color: white;
+  background-color: #414a50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login button:hover, .register button:hover {
+  background-color:  #85a6b1;
+}
+
+.toggle-link {
+  color: #414a50;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toggle-link:hover {
+  color:  #85a6b1;
+}
+
+/* Dashboard Styling */
+.dashboard {
+  background:url("https://images.pexels.com/photos/4386471/pexels-photo-4386471.jpeg?auto=compress&cs=tinysrgb&w=400")no-repeat center/cover;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.dashboard select,
+.dashboard input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dashboard button {
+  padding: 10px 20px;
+  color: white;
+  background-color: #414a50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard button:hover {
+  background-color: #85a6b1;
+}
+
+/* Transaction History Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

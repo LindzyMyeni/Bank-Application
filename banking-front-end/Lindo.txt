@@ -1,0 +1,7 @@
+Name: Lindokuhle
+Surname: Myeni
+Phone Number: 0611901234
+ID Number: 12345
+Account Number: 332979
+Password: 12345
+Balance: 99980.0
