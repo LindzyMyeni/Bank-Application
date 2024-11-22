@@ -131,12 +131,29 @@ const App = () => {
   // Handle transaction (Deposit/Withdraw/Transfer)
   const handleTransaction = async () => {
     setLoading(true);
+
+    // Validate transaction amount
+    const amount = parseFloat(transaction.amount);
+    
+    if (isNaN(amount) || amount <= 0) {
+      alert("Amount must be a positive number.");
+      setLoading(false);
+      return;
+    }
+
+    // Additional validation for withdrawal
+    if (transaction.type === "withdraw" && amount > dashboardData.balance) {
+      alert("Insufficient balance for this withdrawal.");
+      setLoading(false);
+      return;
+    }
+
     try {
       if (transaction.type === "transfer") {
         const response = await axios.post("http://127.0.0.1:5000/transfer", {
           source_account_number: dashboardData.accountNumber,
           recipient_name: transferData.recipientName,
-          amount: parseFloat(transferData.transferAmount),
+          amount: amount,
         });
         alert(response.data.message);
       } else {
@@ -144,7 +161,7 @@ const App = () => {
           `http://127.0.0.1:5000/${transaction.type}`,
           {
             account_number: dashboardData.accountNumber,
-            amount: parseFloat(transaction.amount),
+            amount: amount,
           }
         );
         alert(response.data.message);
@@ -178,7 +195,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Welcome to Bankify</h1>
+      <h1>Welcome to Bankify💵</h1>
 
       {loading && <p>Loading...</p>}
 
@@ -279,75 +296,64 @@ const App = () => {
           <p>Account Balance: R {dashboardData.balance}</p>
           <h3>Make a Transaction</h3>
 
-          <select
-            onChange={(e) =>
-              setTransaction({ ...transaction, type: e.target.value })
-            }
-          >
-            <option value="">Select Transaction</option>
-            <option value="deposit">Deposit</option>
-            <option value="withdraw">Withdraw</option>
-            <option value="transfer">Transfer</option>
-          </select>
+          <div className="transaction-buttons">
+            <button
+              onClick={() => setTransaction({ ...transaction, type: "deposit" })}
+              className={transaction.type === "deposit" ? "active" : ""}
+            >
+              Deposit
+            </button>
+            <button
+              onClick={() => setTransaction({ ...transaction, type: "withdraw" })}
+              className={transaction.type === "withdraw" ? "active" : ""}
+            >
+              Withdraw
+            </button>
+            <button
+              onClick={() => setTransaction({ ...transaction, type: "transfer" })}
+              className={transaction.type === "transfer" ? "active" : ""}
+            >
+              Transfer
+            </button>
+          </div>
 
-          {transaction.type === "transfer" && (
-            <>
-              <input
-                type="text"
-                placeholder="Recipient Name"
-                value={transferData.recipientName}
-                onChange={(e) =>
-                  setTransferData({
-                    ...transferData,
-                    recipientName: e.target.value,
-                  })
-                }
-              />
+          {transaction.type && (
+            <div>
               <input
                 type="number"
-                placeholder="Amount"
-                value={transferData.transferAmount}
+                value={transaction.amount}
                 onChange={(e) =>
-                  setTransferData({
-                    ...transferData,
-                    transferAmount: e.target.value,
-                  })
+                  setTransaction({ ...transaction, amount: e.target.value })
                 }
+                placeholder="Amount"
               />
-            </>
+              {transaction.type === "transfer" && (
+                <input
+                  type="text"
+                  value={transferData.recipientName}
+                  onChange={(e) =>
+                    setTransferData({
+                      ...transferData,
+                      recipientName: e.target.value,
+                    })
+                  }
+                  placeholder="Recipient Name"
+                />
+              )}
+              <button onClick={handleTransaction}>Submit Transaction</button>
+            </div>
           )}
 
-          {transaction.type !== "transfer" && (
-            <input
-              type="number"
-              placeholder="Amount"
-              value={transaction.amount}
-              onChange={(e) =>
-                setTransaction({ ...transaction, amount: e.target.value })
-              }
-            />
-          )}
-
-          <button onClick={handleTransaction}>Submit</button>
-
-          <button
-            onClick={toggleTransactionHistory}
-            style={{ marginTop: "20px" }}
-          >
-            View Transaction History
+          <button onClick={toggleTransactionHistory}>
+            {showTransactionHistory
+              ? "Hide Transaction History"
+              : "Show Transaction History"}
           </button>
 
-          {/* Show Transaction History if toggled */}
           {showTransactionHistory && (
-            <div className="transaction-history">
-              <h4>Transaction History</h4>
-              <ul>
-                {dashboardData.transactions?.map((txn, index) => (
-                  <li key={index}>
-                    {txn.type} - {txn.amount}
-                  </li>
-                ))}
-              </ul>
+            <div>
+              {/* Render transaction history here */}
+              <p>Transaction history goes here.</p>
             </div>
           )}
 
