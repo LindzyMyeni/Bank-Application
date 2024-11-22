@@ -2,6 +2,6 @@ Name: Lindokuhle
 Surname: Ntombela
 Phone Number: 0723889834
 ID Number: 1234567890123
-Account Number: 787018
+Account Number: 322467
 Password: 12345
-Balance: 10310.0
+Balance: 9900.0

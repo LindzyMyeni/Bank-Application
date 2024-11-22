@@ -1,7 +1,0 @@
-Name: theo
-Surname: synman
-Phone Number: 0897653424
-ID Number: 12345
-Account Number: 391336
-Password: tgggff
-Balance: 0

@@ -1,7 +1,0 @@
-Name: Ntobeko
-Surname: Hlulani
-Phone Number: 0767112858
-ID Number: 9376543289654
-Account Number: 176957
-Password: dura
-Balance: 0

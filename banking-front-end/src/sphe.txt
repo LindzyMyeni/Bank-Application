@@ -1,7 +1,0 @@
-Name: sphe
-Surname: ntom
-Phone Number: 1234567890
-ID Number: 1234567890123
-Account Number: 157832
-Password: 12345
-Balance: 0

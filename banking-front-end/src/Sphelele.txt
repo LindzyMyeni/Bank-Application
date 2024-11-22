@@ -1,0 +1,7 @@
+Name: Sphelele
+Surname: Myeni
+Phone Number: 1234567890
+ID Number: 1234567890123
+Account Number: 160939
+Password: 2468
+Balance: 10000.0

@@ -132,41 +132,44 @@ def withdraw():
 def transfer():
     data = request.json
     source_account_number = data.get('source_account_number')
-    destination_account_number = data.get('destination_account_number')
+    recipient_name = data.get('recipient_name')  # Updated key from React App
     amount = data.get('amount')
  
-    # Check if source account exists and get its data
+    # Find the source and destination account data
     source_user_data = None
     destination_user_data = None
+    destination_username = None  # Track the file name for destination account
+ 
     for file in os.listdir():
         if not file.endswith(".txt"):
             continue
         user_data = read_user_data(file[:-4])
-       
+ 
         if user_data['account_number'] == source_account_number:
             source_user_data = user_data
-        elif user_data['account_number'] == destination_account_number:
+        elif user_data['name'] == recipient_name:
             destination_user_data = user_data
+            destination_username = file[:-4]  # Extract the username
  
-    # If either the source or destination account doesn't exist
+    # Handle missing accounts
     if not source_user_data:
         return jsonify({"error": "Source account not found"}), 404
     if not destination_user_data:
-        return jsonify({"error": "Destination account not found"}), 404
+        return jsonify({"error": "Recipient account not found"}), 404
  
-    # Ensure the source account has enough balance
+    # Check for sufficient funds
     if source_user_data['balance'] < amount:
         return jsonify({"error": "Insufficient funds"}), 400
  
-    # Proceed with the transfer
+    # Perform the transfer
     source_user_data['balance'] -= amount
     destination_user_data['balance'] += amount
  
-    # Write updated data back to the respective files
+    # Save updated account data
     write_user_data(source_user_data['account_number'], source_user_data)
-    write_user_data(destination_user_data['account_number'], destination_user_data)
+    write_user_data(destination_username, destination_user_data)
  
-    return jsonify({"message": f"Transferred {amount} from {source_account_number} to {destination_account_number} successfully"}), 200
+    return jsonify({"message": f"Transferred {amount} to {recipient_name} successfully"}), 200
  
  
  
